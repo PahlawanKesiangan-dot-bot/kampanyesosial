@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kembara Literasi — Gerakan Donasi Buku Pelosok & Pesisir</title>
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+
+  <!-- BAR INFO RUTE PELAYARAN -->
+  <div class=" route-Banner" role="region" aria-label="Status Ekspedisi">
+    <div class="container route-banner-inner">
+      <div class="route-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Ekspedisi Aktif: <strong id="manifest-serial">Batch XI/2026</strong></span>
+      </div>
+      <div class="route-path">
+        Rute Kapal: <strong>Surabaya &rarr; Sabu &rarr; Haruku &rarr; Misool &rarr; Talaud</strong>
+      </div>
+      <div class="route-date" id="live-expedition-date">Log Pelayaran Nusantara</div>
+    </div>
+  </div>
+
+  <!-- HEADER UTAMA & TOMBOL DARK/LIGHT MODE -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#beranda" class="brand-mark" aria-label="Kembara Literasi Beranda">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="34" height="34">
+            <rect x="2" y="2" width="36" height="36" rx="8" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 27 Q20 32 32 27 L29 20 L11 20 Z" fill="currentColor"/>
+            <path d="M19 8 L19 19 M19 9 L28 15 L19 17 Z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <span class="brand-title">Kembara Literasi</span>
+          <span class="brand-sub">Donasi Buku Pesisir &amp; Pulau 3T</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Navigasi Utama">
+        <a href="#peta-ekspedisi" class="nav-item">Peta Ekspedisi</a>
+        <a href="#kalkulator-dampak" class="nav-item">Kalkulator Buku</a>
+        <a href="#petisi-kargo" class="nav-item">Petisi Kargo</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="theme-toggle-btn" aria-label="Ganti Mode Gelap atau Terang">
+          <span id="theme-icon" aria-hidden="true">🌙</span>
+          <span id="theme-label">Mode Gelap</span>
+        </button>
+        <a href="#kalkulator-dampak" class="btn btn-primary btn-sm">Donasi Buku</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="beranda">
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="section-badge">Laporan Lapangan Wilayah 3T</span>
+            <h1 class="hero-headline">
+              Di Pulau Sabu dan Misool, <span>1 buku cerita bergambar</span> harus digilir oleh 24 anak hingga halaman terakhirnya robek terlepas.
+            </h1>
+            <p class="hero-lead">
+              Akses internet belum menjangkau banyak dermaga pulau terluar, sementara ongkos kargo kapal sering kali tiga kali lebih mahal daripada harga bukunya. Mari kirimkan buku fisik berkualitas langsung lewat jalur pelayaran perintis.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#peta-ekspedisi" class="btn btn-primary">Jelajahi Peta Pulau Krisis</a>
+              <a href="#petisi-kargo" class="btn btn-secondary">Tanda Tangani Petisi Kargo</a>
+            </div>
+          </div>
+
+          <!-- Kartu Foto Dokumenter dari Internet -->
+          <aside class="hero-photo-card" aria-label="Dokumentasi Literasi Nusantara">
+            <div class="photo-frame">
+              <div id="hero-img-skeleton" class="img-skeleton"></div>
+              <img id="hero-web-img" class="web-photo" alt="Dokumentasi anak membaca dan pesisir Nusantara" crossorigin="anonymous">
+              <span class="photo-tag">Dokumentasi Pesisir &amp; Pustaka</span>
+            </div>
+            <div class="photo-caption">
+              <p>&ldquo;Setiap kali peluit kapal perintis terdengar dari balik tanjung, anak-anak berlari ke dermaga menanyakan apakah ada kardus buku cerita baru bulan ini.&rdquo;</p>
+              <div class="caption-meta">
+                <span>Catatan Relawan Dermaga Seba, NTT</span>
+                <a id="hero-photo-credit" href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Sumber Foto: Wikimedia</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- RINGKASAN DATA LOGISTIK -->
+        <div class="stats-grid" role="region" aria-label="Data Capaian Ekspedisi">
+          <div class="stat-card">
+            <span class="stat-label">Buku Fisik Terkirim</span>
+            <strong class="stat-value"><span id="metric-books-sent">11.420</span> <small>/ 18.500</small></strong>
+            <span class="stat-note">61,7% dari target tahun ini</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Armada Kapal Aktif</span>
+            <strong class="stat-value">7 Kapal</strong>
+            <span class="stat-note">4 Kapal Tol Laut &amp; 3 Perahu Pesisir</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total Muatan Buku</span>
+            <strong class="stat-value"><span id="metric-tonnage">4,86</span> Ton</strong>
+            <span class="stat-note">Tersebar di 28 taman baca pulau</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Dukungan Petisi Kargo</span>
+            <strong class="stat-value"><span id="metric-petitions">3.842</span> Suara</strong>
+            <span class="stat-note">Menuju target 5.000 tanda tangan</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FITUR 1: PETA EKSPEDISI NUSANTARA ================= -->
+    <section id="peta-ekspedisi" class="section-block">
+      <div class="container">
+        <div class="section-header-flex">
+          <div>
+            <span class="section-badge">01 &bull; Peta Distribusi Pulau Terluar</span>
+            <h2 class="section-title">Peta Ekspedisi Buku &amp; Cerita Anak Pesisir</h2>
+            <p class="section-desc">Klik titik pulau pada peta atau tombol daftar pulau di bawah untuk melihat foto wilayah dari internet, membaca surat anak setempat, serta daftar buku yang paling dibutuhkan.</p>
+          </div>
+          <button type="button" id="btn-map-reset" class="btn btn-secondary btn-sm">Reset Fokus Peta</button>
+        </div>
+
+        <!-- Tombol Pilihan Pulau -->
+        <div class="island-pills" id="island-quick-tabs" role="tablist" aria-label="Pilih Pulau Tujuan"></div>
+
+        <div class="expedition-layout">
+          <!-- Area Peta Interaktif SVG -->
+          <div class="map-card">
+            <div class="map-topbar">
+              <span id="map-coord-readout">Koordinat: 10°30' LS, 121°50' BT</span>
+              <span class="map-hint">Klik titik pulau untuk melihat laporan</span>
+            </div>
+
+            <div class="svg-pan-container" id="svg-pan-container">
+              <svg id="nusantara-map" viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta Jalur Ekspedisi Buku Kepulauan Indonesia">
+                <defs>
+                  <pattern id="seaGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <path d="M 50 0 L 0 0 0 50" fill="none" class="map-grid-line" stroke-width="0.7"/>
+                  </pattern>
+                </defs>
+
+                <!-- Latar Laut Adaptif Terang/Gelap -->
+                <rect width="1000" height="460" class="map-sea-bg"/>
+                <rect width="1000" height="460" fill="url(#seaGrid)"/>
+
+                <!-- Garis Khatulistiwa -->
+                <line x1="0" y1="185" x2="1000" y2="185" class="map-equator-line" stroke-width="1.2" stroke-dasharray="6 5"/>
+                <text x="16" y="177" class="map-equator-text" font-size="11" font-weight="600">Garis Khatulistiwa 0°</text>
+
+                <!-- Grup Kamera Peta -->
+                <g id="map-camera-group">
+                  <!-- Daratan Kepulauan Indonesia -->
+                  <g class="map-landmasses" stroke-width="1.5" stroke-linejoin="round">
+                    <path d="M62,92 L108,112 L156,162 L205,222 L238,274 L212,294 L168,255 L118,195 L72,135 Z"/>
+                    <path d="M236,308 L305,314 L382,324 L432,332 L425,348 L352,344 L282,334 L230,324 Z"/>
+                    <path d="M442,336 L464,338 L462,347 L440,345 Z"/>
+                    <path d="M474,340 L512,342 L510,351 L472,349 Z"/>
+                    <path d="M526,342 L595,340 L596,350 L525,351 Z"/>
+                    <path d="M522,364 L556,368 L552,379 L518,374 Z"/>
+                    <path d="M612,355 L668,342 L674,354 L616,368 Z"/>
+                    <path d="M292,135 L355,108 L425,112 L456,155 L438,225 L385,252 L318,244 L282,196 Z"/>
+                    <path d="M512,152 L598,144 L608,160 L542,168 L538,196 L582,192 L584,208 L540,214 L564,268 L548,274 L524,228 L502,272 L486,266 L504,204 Z"/>
+                    <path d="M688,148 L714,138 L718,176 L702,198 L684,178 Z"/>
+                    <path d="M674,238 L732,235 L736,250 L676,252 Z"/>
+                    <path d="M768,205 L818,195 L848,218 L935,222 L968,268 L948,318 L885,305 L842,262 L795,248 L762,226 Z"/>
+                  </g>
+
+                  <!-- Nama Perairan -->
+                  <g class="map-sea-labels" font-size="12" font-weight="500">
+                    <text x="275" y="288">Laut Jawa</text>
+                    <text x="600" y="295">Laut Banda</text>
+                    <text x="605" y="112">Laut Sulawesi</text>
+                    <text x="195" y="138">Laut Natuna</text>
+                    <text x="775" y="328">Laut Arafura</text>
+                  </g>
+
+                  <!-- Pelabuhan Utama Surabaya -->
+                  <g transform="translate(382, 324)">
+                    <circle cx="0" cy="0" r="5" class="hub-dot"/>
+                    <text x="10" y="4" class="hub-label" font-size="11" font-weight="700">Pelabuhan Surabaya</text>
+                  </g>
+
+                  <!-- Garis Rute Kapal Ekspedisi -->
+                  <g class="shipping-routes" fill="none" stroke-width="2.2" stroke-dasharray="6 6">
+                    <path class="route-line" d="M382,324 Q260,260 252,118"/>
+                    <path class="route-line" d="M382,324 Q480,382 586,378"/>
+                    <path class="route-line" d="M586,378 Q660,330 694,254"/>
+                    <path class="route-line" d="M694,254 Q730,242 756,226"/>
+                    <path class="route-line" d="M694,254 Q665,165 642,96"/>
+                  </g>
+
+                  <!-- Layer Pin Pulau -->
+                  <g id="map-pins-layer"></g>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Panel Detail Pulau + Foto Wilayah dari Internet -->
+          <article class="island-detail-card" id="island-logbook" aria-live="polite">
+            <div class="island-card-head">
+              <div>
+                <span class="island-code" id="log-code">POS #NTT-02</span>
+                <h3 class="island-title" id="log-island-name">Pulau Sabu &amp; Rote, NTT</h3>
+              </div>
+              <span class="urgency-pill" id="log-urgency">Darurat Buku</span>
+            </div>
+
+            <!-- Foto Pulau Asli dari Internet -->
+            <div class="island-photo-wrap">
+              <div id="island-img-skeleton" class="img-skeleton"></div>
+              <img id="island-web-img" class="web-photo" alt="Foto wilayah pulau tujuan ekspedisi" crossorigin="anonymous">
+              <a id="island-photo-credit" class="island-photo-credit" href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Sumber: Wikimedia Commons</a>
+            </div>
+
+            <!-- Kutipan Anak -->
+            <blockquote class="child-quote">
+              <p id="log-letter-text"></p>
+              <footer id="log-child-author"></footer>
+            </blockquote>
+
+            <!-- Tantangan Pengiriman -->
+            <div class="info-box">
+              <strong>Kendala Pengiriman Kapal:</strong>
+              <p id="log-bottleneck-text"></p>
+            </div>
+
+            <!-- Daftar Kebutuhan Buku -->
+            <div class="needed-books">
+              <strong>3 Jenis Buku Paling Dibutuhkan:</strong>
+              <ul class="needed-list" id="log-needed-list"></ul>
+            </div>
+
+            <button type="button" id="btn-ship-to-island" class="btn btn-primary btn-full">
+              Salurkan Buku ke Pulau Ini &rarr;
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FITUR 2: KALKULATOR KONVERSI KEBAIKAN ================= -->
+    <section id="kalkulator-dampak" class="section-block section-alt">
+      <div class="container">
+        <div class="section-header-flex">
+          <div>
+            <span class="section-badge">02 &bull; Kalkulator Konversi Kebaikan</span>
+            <h2 class="section-title">Ubah Jajan Harian Menjadi Paket Buku untuk Pelosok</h2>
+            <p class="section-desc">Geser nominal di bawah untuk melihat bagaimana harga segelas minuman atau tiket nonton di kota setara dengan buku bacaan baru bagi anak-anak pesisir.</p>
+          </div>
+          <div class="target-island-badge">
+            <span>Tujuan Pengiriman:</span>
+            <strong id="calc-dest-label">Pulau Sabu &amp; Rote, NTT</strong>
+          </div>
+        </div>
+
+        <div class="calculator-layout">
+          <!-- Kontrol Kalkulator -->
+          <div class="calc-card">
+            <div class="nominal-header">
+              <div>
+                <span class="stat-label">Nominal Donasi Pilihan</span>
+                <div class="nominal-amount" id="calc-amount-text">Rp 65.000</div>
+              </div>
+              <div class="lifestyle-pill" id="calc-urban-badge">
+                Setara 1 tiket bioskop akhir pekan
+              </div>
+            </div>
+
+            <div class="slider-box">
+              <label for="donation-slider" class="sr-only">Geser Nominal Donasi</label>
+              <input type="range" id="donation-slider" min="20000" max="500000" step="5000" value="65000">
+              <div class="slider-marks" aria-hidden="true">
+                <span>Rp 20.000</span>
+                <span>Rp 150.000</span>
+                <span>Rp 300.000</span>
+                <span>Rp 500.000</span>
+              </div>
+            </div>
+
+            <!-- Tombol Cepat Nominal -->
+            <div class="preset-grid" role="group" aria-label="Pilihan Cepat Nominal">
+              <button type="button" class="preset-btn" data-val="25000">
+                <strong>Rp 25.000</strong>
+                <span>1 Gelas Boba Manis</span>
+              </button>
+              <button type="button" class="preset-btn active" data-val="65000">
+                <strong>Rp 65.000</strong>
+                <span>1 Tiket Bioskop</span>
+              </button>
+              <button type="button" class="preset-btn" data-val="150000">
+                <strong>Rp 150.000</strong>
+                <span>Sekali Nongkrong Kafe</span>
+              </button>
+              <button type="button" class="preset-btn" data-val="350000">
+                <strong>Rp 350.000</strong>
+                <span>1 Kemeja Kasual</span>
+              </button>
+            </div>
+
+            <div class="package-summary">
+              <strong>Dampak Paket Donasi Anda:</strong>
+              <p id="calc-package-desc"></p>
+              <div class="package-metrics">
+                <div>
+                  <span>Jumlah Buku</span>
+                  <strong id="calc-books-count">2 Buku Fisik</strong>
+                </div>
+                <div>
+                  <span>Berat Kargo</span>
+                  <strong id="calc-cargo-weight">0,84 Kg</strong>
+                </div>
+                <div>
+                  <span>Pelindung Laut</span>
+                  <strong id="calc-waterproof-stat">Kardus Kedap Air</strong>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="btn-commit-donation" class="btn btn-primary btn-full">
+              Catat Komitmen Donasi Buku
+            </button>
+            <p id="donation-feedback" class="feedback-msg" role="status" aria-live="polite"></p>
+          </div>
+
+          <!-- Visualisasi Tumpukan Buku -->
+          <div class="calc-visual-card">
+            <div class="impact-header">
+              <div class="impact-title-row">
+                <span class="stat-label">Estimasi Anak Penerima Manfaat</span>
+                <strong class="impact-count" id="calc-children-impact">32 Anak Pesisir</strong>
+              </div>
+              <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="240" aria-valuenow="32" id="impact-progressbar">
+                <div class="progress-fill" id="calc-meter-fill" style="width: 24%"></div>
+              </div>
+              <p class="impact-sub">1 buku dibaca bergantian oleh rata-rata 16 anak di taman baca pesisir.</p>
+            </div>
+
+            <div class="stack-stage">
+              <div class="drybag-pill hidden" id="drybag-indicator">
+                🎒 Termasuk Tas Tahan Air Laut (Dry-Bag Perahu)
+              </div>
+              <div id="visual-book-stack" class="visual-book-stack" aria-hidden="true"></div>
+              <div class="stack-base">Simulasi Tumpukan Paket Buku</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FITUR 3: PETISI TANDA TANGAN DIGITAL ================= -->
+    <section id="petisi-kargo" class="section-block">
+      <div class="container">
+        <div class="petition-intro">
+          <span class="section-badge">03 &bull; Petisi Kebijakan Publik</span>
+          <h2 class="section-title">
+            Dukung Subsidi Kargo Pos Gratis untuk Pengiriman Buku ke Wilayah Terpencil
+          </h2>
+          <p class="section-desc">
+            Ribuan buku sumbangan tertahan di kota besar karena mahalnya biaya kirim per kilogram ke kepulauan timur. Goreskan tanda tangan Anda pada kanvas di bawah untuk mendesak program <strong>Hari Bebas Ongkir Pustaka</strong> setiap bulan.
+          </p>
+        </div>
+
+        <div class="petition-layout">
+          <!-- Form & Kanvas Tanda Tangan -->
+          <form id="petition-form" class="petition-card" novalidate>
+            <div class="card-top-meta">
+              <span>Formulir Tanda Tangan Digital</span>
+              <strong id="signer-next-number">Urutan #3843</strong>
+            </div>
+
+            <div class="input-grid">
+              <div class="form-group">
+                <label for="volunteer-name">Nama Lengkap Relawan *</label>
+                <input type="text" id="volunteer-name" placeholder="Contoh: Raka Pratama" required maxlength="48">
+              </div>
+              <div class="form-group">
+                <label for="volunteer-city">Kota / Kabupaten Asal *</label>
+                <input type="text" id="volunteer-city" placeholder="Contoh: Sidoarjo" required maxlength="40">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="canvas-header">
+                <label for="signature-canvas">Goreskan Tanda Tangan di Kotak Bawah *</label>
+                <button type="button" id="btn-clear-canvas" class="clear-btn">Ulangi Tanda Tangan</button>
+              </div>
+
+              <div class="canvas-pad-box" id="canvas-pad-box">
+                <canvas id="signature-canvas" aria-label="Kanvas Tanda Tangan Petisi"></canvas>
+                <div class="signature-guide" aria-hidden="true">
+                  <span>Tanda tangan di atas garis ini</span>
+                </div>
+
+                <!-- Stempel Verifikasi -->
+                <div id="verified-rubber-stamp" class="verified-stamp hidden" aria-hidden="true">
+                  <div class="stamp-box">
+                    <span>KEMBARA LITERASI</span>
+                    <strong>SAH &amp; TERCATAT</strong>
+                    <small id="stamp-date-code">LOGBOOK EKSPEDISI</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p id="petition-error" class="error-msg" role="alert"></p>
+
+            <button type="submit" id="btn-submit-petition" class="btn btn-primary btn-full">
+              Simpan Tanda Tangan &amp; Unduh Kartu Relawan (.PNG)
+            </button>
+          </form>
+
+          <!-- Daftar Penandatangan Petisi -->
+          <div class="registry-card">
+            <div class="registry-top">
+              <div>
+                <span class="stat-label">Suara Terkumpul</span>
+                <h3>Daftar Relawan Pendukung</h3>
+              </div>
+              <div class="total-badge">
+                <strong id="registry-total-count">3.842</strong>
+                <span>Relawan</span>
+              </div>
+            </div>
+
+            <div class="registry-bar-wrap">
+              <div class="progress-track">
+                <div id="registry-progress-fill" class="progress-fill progress-green" style="width: 76.8%"></div>
+              </div>
+              <div class="registry-meta">
+                <span>76,8% dari target 5.000 suara</span>
+                <span>Tersimpan otomatis di browser</span>
+              </div>
+            </div>
+
+            <ul class="signer-list" id="signer-ledger-list" aria-label="Daftar Relawan Penandatangan"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Kembara Literasi Nusantara</strong>
+        <p>Inisiatif pemerataan buku bacaan fisik berkualitas bagi anak-anak di pulau terluar dan pesisir Indonesia.</p>
+      </div>
+      <div class="footer-right">
+        <p><strong>Pos Transit Utama:</strong> Pelabuhan Tanjung Perak, Surabaya</p>
+        <p>Sumber Foto Dokumenter: Repositori Terbuka Wikimedia Commons</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
